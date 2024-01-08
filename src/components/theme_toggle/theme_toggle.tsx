@@ -6,7 +6,7 @@ import { usePrefersReducedMotion } from "./../../hooks";
 import { useSpring, useTrail, animated } from "react-spring";
 import { IconWrapper, MoonOrSun } from "./theme_toggle.styles";
 
-type DarkModeToggleProps = {
+type ThemeToggleProps = {
   id?: string;
   size?: number;
   isDarkMode: boolean;
@@ -14,7 +14,7 @@ type DarkModeToggleProps = {
   delegated?: Record<string, any>;
 };
 
-export const ThemeToggle: React.FC<DarkModeToggleProps> = ({
+export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   size = 18,
   isDarkMode,
   toggleTheme,
@@ -60,8 +60,8 @@ export const ThemeToggle: React.FC<DarkModeToggleProps> = ({
   return (
     <IconWrapper
       onClick={toggleColorMode}
-      aria-label={isDarkMode ? "Activate light mode" : "Activate dark mode"}
       title={isDarkMode ? "Activate light mode" : "Activate dark mode"}
+      aria-label={isDarkMode ? "Activate light mode" : "Activate dark mode"}
       {...delegated}
     >
       <MoonOrSun
@@ -86,9 +86,9 @@ export const ThemeToggle: React.FC<DarkModeToggleProps> = ({
         {/* Sun dots */}
         <g>
           {sunDotTrail.map(({ transform, ...props }, index) => {
-            const angle = sunDotAngles[index];
             const centerX = 9;
             const centerY = 9;
+            const angle = sunDotAngles[index];
 
             const angleInRads = (angle / 180) * Math.PI;
 
@@ -98,10 +98,10 @@ export const ThemeToggle: React.FC<DarkModeToggleProps> = ({
 
             return (
               <animated.circle
-                key={angle}
                 cx={a}
                 cy={b}
                 r={1.5}
+                key={angle}
                 fill={palette.text}
                 style={{
                   ...props,
